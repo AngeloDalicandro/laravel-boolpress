@@ -2,6 +2,7 @@
 
 @section('content')
     
+    <a href="{{ route('admin.posts.edit', ['post' => $post->id]) }}"  class="btn btn-primary">Modifica post</a>
     <h1> {{ $post->title }}</h1>
 
     <div> Creato il: {{ $post->created_at }} </div>
