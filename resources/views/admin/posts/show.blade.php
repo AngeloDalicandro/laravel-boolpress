@@ -22,6 +22,10 @@
     <div> Aggiornato il: {{ $post->updated_at->format('l j F Y')  }} </div>
     <div> Slug: {{ $post->slug }} </div>
 
+    
+    <div>Categoria: {{ $post->category ? $post->category->name : 'Nessuna' }}  </div> 
+    
+
     <h3 class="mt-3">Contenuto:</h3>
     <p> {{ $post->content }} </p>
 
