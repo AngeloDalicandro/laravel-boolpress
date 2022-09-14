@@ -13,8 +13,13 @@
 
     <h1> {{ $post->title }}</h1>
 
-    <div> Creato il: {{ $post->created_at }} </div>
-    <div> Aggiornato il: {{ $post->updated_at }} </div>
+    <div> Creato il: {{ $post->created_at->format('l j F Y') }} </div>
+    
+    @if ($created_days_ago)
+        <div> Creato {{ $created_days_ago }} giorni fa. </div>
+    @endif
+
+    <div> Aggiornato il: {{ $post->updated_at->format('l j F Y')  }} </div>
     <div> Slug: {{ $post->slug }} </div>
 
     <h3 class="mt-3">Contenuto:</h3>
