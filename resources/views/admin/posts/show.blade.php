@@ -25,6 +25,15 @@
     
     <div>Categoria: {{ $post->category ? $post->category->name : 'Nessuna' }}  </div> 
     
+    <div>Tags:
+       @if($post->tags->isNotEmpty()) 
+            @foreach ($post->tags as $tag)
+            {{ $tag->name }} {{ !$loop->last ? ',' : '' }}
+            @endforeach
+       @else 
+        Nessuno
+        @endif
+    </div>
 
     <h3 class="mt-3">Contenuto:</h3>
     <p> {{ $post->content }} </p>
