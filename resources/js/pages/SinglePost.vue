@@ -6,6 +6,8 @@
 
             <h1> {{ post.title }} </h1> 
 
+            <img v-if="post.cover" :src="post.cover" :alt="post.title">
+
             <div v-if="post.category">Categoria : {{ post.category.name }}</div>
 
             <div v-if="post.tags.length > 0">
