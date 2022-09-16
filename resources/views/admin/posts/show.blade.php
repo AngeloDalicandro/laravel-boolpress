@@ -13,6 +13,8 @@
 
     <h1> {{ $post->title }}</h1>
 
+    <img src="{{ asset( '/storage/' . $post->cover) }}" alt=" {{ $post->title }} ">
+
     <div> Creato il: {{ $post->created_at->format('l j F Y') }} </div>
     
     @if ($created_days_ago)

@@ -4,7 +4,7 @@
 
     <h1>Crea un nuovo post</h1>
     
-    <form action="{{ route('admin.posts.store') }}" method="post">
+    <form action="{{ route('admin.posts.store') }}" method="post" enctype="multipart/form-data">
         @csrf
         @method('POST')
 
@@ -53,6 +53,11 @@
             <label for="content" class="form-label">Contenuto</label>
             <textarea class="form-control" id="content" name="content" rows="5">"{{ old('content') }}"</textarea>
         </div>
+
+        <div class="mb-3">
+            <label for="image" class="form-label">Default file input example</label>
+            <input class="form-control" type="file" id="image" name="image">
+          </div>
 
         <input type="submit" value="Salva Post">          
     </form>
