@@ -14,7 +14,13 @@
                         <div class="card-body">
                             <h5 class="card-title"> {{ post.title }} </h5>
                             <p class="card-text"> {{ truncateText(post.content) }} </p>
-                            <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+                            <router-link class="btn btn-primary" 
+                            :to="{
+                                name: 'single-post', 
+                                params: {slug: post.slug}
+                                }" >
+                            Leggi di più
+                            </router-link>
                         </div>
                     </div>
                 </div>

@@ -2036,14 +2036,25 @@ __webpack_require__.r(__webpack_exports__);
   name: 'SinglePost',
   data: function data() {
     return {
-      post: null
+      post: null,
+      path: 'http://127.0.0.1:8000/api/posts/'
     };
   },
   mounted: function mounted() {
     var _this = this;
 
-    axios.get('api/posts/' + this.$route.params.slug).then(function (response) {
-      _this.post = response.data.results;
+    // axios.get('api/posts/' + this.$route.params.slug)
+    // .then((response) => {
+    //     this.post = response.data.results;
+    // })
+    axios.get(this.path + this.$route.params.slug).then(function (response) {
+      if (response.data.success) {
+        _this.post = response.data.results;
+      } else {
+        _this.$route.push({
+          name: 'not-found'
+        });
+      }
     });
   }
 });
@@ -2177,7 +2188,17 @@ var render = function render() {
       staticClass: "card-title"
     }, [_vm._v(" " + _vm._s(post.title) + " ")]), _vm._v(" "), _c("p", {
       staticClass: "card-text"
-    }, [_vm._v(" " + _vm._s(_vm.truncateText(post.content)) + " ")])])])]);
+    }, [_vm._v(" " + _vm._s(_vm.truncateText(post.content)) + " ")]), _vm._v(" "), _c("router-link", {
+      staticClass: "btn btn-primary",
+      attrs: {
+        to: {
+          name: "single-post",
+          params: {
+            slug: post.slug
+          }
+        }
+      }
+    }, [_vm._v("\n                        Leggi di più\n                        ")])], 1)])]);
   }), 0), _vm._v(" "), _c("nav", {
     staticClass: "mt-3"
   }, [_c("ul", {
@@ -2354,7 +2375,14 @@ var render = function render() {
 
   return _c("div", {
     staticClass: "container"
-  }, [_vm.post ? _c("div", [_c("h1", [_vm._v(" " + _vm._s(_vm.post.title) + " ")])]) : _c("div", [_vm._v("Loading...")])]);
+  }, [_vm.post ? _c("div", [_c("h1", [_vm._v(" " + _vm._s(_vm.post.title) + " ")]), _vm._v(" "), _vm.post.category ? _c("div", [_vm._v("Categoria : " + _vm._s(_vm.post.category.name))]) : _vm._e(), _vm._v(" "), _vm.post.tags.length > 0 ? _c("div", _vm._l(_vm.post.tags, function (tag) {
+    return _c("span", {
+      key: tag.id,
+      staticClass: "badge rounded-pill bg-primary"
+    }, [_vm._v(" " + _vm._s(tag.name) + " ")]);
+  }), 0) : _vm._e(), _vm._v(" "), _c("p", {
+    staticClass: "mt-3"
+  }, [_vm._v(" " + _vm._s(_vm.post.content) + " ")])]) : _c("div", [_vm._v("Loading...")])]);
 };
 
 var staticRenderFns = [];
